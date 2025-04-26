@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AidLink - Humanitarian Aid Distribution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-hand-holding-heart"></i> AidLink
+            </div>
+            <ul class="nav-links">
+                <li><a href="#dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#tokens"><i class="fas fa-coins"></i> Aid Tokens</a></li>
+                <li><a href="#marketplace"><i class="fas fa-store"></i> Marketplace</a></li>
+                <li><a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard" class="dashboard-section">
+            <h1><i class="fas fa-globe"></i> Welcome to AidLink</h1>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    <h3>Total Aid Distributed</h3>
+                    <p id="totalAid">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-store fa-2x"></i>
+                    <h3>Active Vendors</h3>
+                    <p id="activeVendors">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users fa-2x"></i>
+                    <h3>Beneficiaries</h3>
+                    <p id="beneficiaries">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokens" class="tokens-section">
+            <h2><i class="fas fa-coins"></i> Aid Tokens</h2>
+            <div class="token-actions">
+                <button id="createToken" class="btn primary">
+                    <i class="fas fa-plus"></i> Create New Token
+                </button>
+                <button id="viewTokens" class="btn secondary">
+                    <i class="fas fa-list"></i> View All Tokens
+                </button>
+            </div>
+            <div id="tokensList" class="tokens-list">
+                <!-- Tokens will be dynamically added here -->
+            </div>
+        </section>
+
+        <section id="marketplace" class="marketplace-section">
+            <h2><i class="fas fa-store"></i> Aid Marketplace</h2>
+            <div class="vendor-section">
+                <h3>Registered Vendors</h3>
+                <div id="vendorsList" class="vendors-list">
+                    <!-- Vendors will be dynamically added here -->
+                </div>
+                <button id="registerVendor" class="btn primary">
+                    <i class="fas fa-plus"></i> Register New Vendor
+                </button>
+            </div>
+        </section>
+
+        <section id="analytics" class="analytics-section">
+            <h2><i class="fas fa-chart-bar"></i> Impact Analytics</h2>
+            <div class="analytics-dashboard">
+                <div class="chart-container">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+                <div class="metrics-container">
+                    <!-- Metrics will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 AidLink - Powered by Stellar Blockchain <i class="fas fa-link"></i></p>
+    </footer>
+
+    <!-- Modal for creating tokens -->
+    <div id="tokenModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-plus-circle"></i> Create New Aid Token</h2>
+            <form id="tokenForm">
+                <div class="form-group">
+                    <label for="recipient"><i class="fas fa-user"></i> Recipient</label>
+                    <input type="text" id="recipient" required placeholder="Enter recipient name">
+                </div>
+                <div class="form-group">
+                    <label for="amount"><i class="fas fa-dollar-sign"></i> Amount</label>
+                    <input type="number" id="amount" required placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="category"><i class="fas fa-tags"></i> Category</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="food">Food</option>
+                        <option value="medical">Medical</option>
+                        <option value="shelter">Shelter</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn primary">
+                    <i class="fas fa-check"></i> Create Token
+                </button>
+                <button type="button" class="btn secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { injectSpeedInsights } from '@vercel/speed-insights';
+        import { inject } from '@vercel/analytics';
+        
+        inject();
+        injectSpeedInsights();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/tokens.js"></script>
+    <script type="module" src="/js/marketplace.js"></script>
+    <script type="module" src="/js/analytics.js"></script>
+</body>
+</html>
